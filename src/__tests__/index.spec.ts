@@ -126,4 +126,28 @@ describe('formatTime', () => {
             expect(formatTime(date, { timeFormat: '12h', fullSize: true, divider: '.' })).toEqual('02.20');
         });
     });
+
+    describe('# Format in AM/PM metric', () => {
+        const testTable = [
+            { input: 19, output: '7:00 PM' },
+            { input: 20, output: '8:00 PM' },
+            { input: 12.5, output: '12:30 PM' },
+            { input: 23, output: '11:00 PM' },
+            { input: 20, output: '8:00 PM' },
+            { input: 11.5, output: '11:30 AM' },
+            { input: 23, output: '11:00 PM' },
+            { input: 15.4, output: '3:24 PM' },
+            { input: 6.25, output: '6:15 AM' },
+            { input: 19.3, output: '7:18 PM' },
+            { input: 22.1, output: '10:06 PM' },
+            { input: 0, output: '12:00 AM' },
+            { input: 12, output: '12:00 PM' }
+        ];
+
+        testTable.forEach(({ input, output }) => {
+            test(`should format number ${input} as "${output}"`, () => {
+                expect(formatTime(input, { timeFormat: 'AM-PM' })).toEqual(output);
+            });
+        });
+    });
 });

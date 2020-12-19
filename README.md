@@ -41,6 +41,16 @@ formatTime(22.75); // 22:45
 formatTime(22, { timeFormat: '12h' }); // 8:00
 formatTime(13.5, { timeFormat: '12h' }); // 1:30
 
+// AM/PM also available
+formatTime(13.5, { timeFormat: 'AM-PM' }); // 1:30 PM
+formatTime(0, { timeFormat: 'AM-PM' }); // 12:00 AM
+formatTime(4, { timeFormat: 'AM-PM' }); // 4:00 AM
+formatTime(12, { timeFormat: 'AM-PM' }); // 12:00 PM
+
+// and customaziable
+formatTime(12, { timeFormat: 'AM-PM', suffixes: [' a.m', ' p.m'] }); // 12:00 p.m.
+formatTime(18.5, { timeFormat: 'AM-PM', suffixes: [' a.m', ' p.m'] }); // 6:30 p.m.
+
 // `fullSize`
 formatTime(7, { fullSize: true }); // 09:00
 formatTime(1, { fullSize: true }); // 01:00
@@ -73,10 +83,11 @@ function formatTime(input: Date | number, options?: Options): string {
 ### Options
 |**Option**| **Type** | **Default** | **Description** |
 |--|--|--|--|
-| `timeFormat` | `'24h'/'12h'` | `'24h'` | The way of formatting hours |
+| `timeFormat` | `'24h'/'12h'/'AM-PM''` | `'24h'` | The way of formatting hours |
 | `divider` | `string` | `:` | Divider between hours and minutes |
 | `fullSize` | `boolean` | `false` | Appends leading zero if hour less than 10 |
 | `removeOverflow` | `boolean` | `false` | Trims extra-hours if input value more than 24 |
+| `suffixes` | `[string, string]` | `[' AM', ' PM']` | Suffixes for `'AM-PM''` time format. `['<suffix if before noon>', '<siffux if after noon']` |
 
 ----
 ## Contributing

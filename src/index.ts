@@ -2,13 +2,14 @@ const MAX_HOUR_VALUE = 24;
 const HALF_OF_DAY = 12;
 const MINUTES_IN_HOUR = 60;
 
-export type TimeFormat = '12h' | '24h';
+export type TimeFormat = '12h' | '24h' | 'AM-PM';
 
 export type Options = {
     timeFormat?: TimeFormat;
     divider?: string;
     fullSize?: boolean;
     removeOverflow?: boolean;
+    suffixes?: [string, string];
 };
 
 /**
@@ -19,12 +20,15 @@ export type Options = {
  * @param {string} [options.divider = ':'] Custom divider between hours and minutes
  * @param {boolean} [options.fullSize = false] If set, will add leading zero to hours
  * @param {boolean} [options.removeOverflow = false] If set, will decrease hours which is more than 23.99
+ * @param {string[]} [options.suffixes = [' AM', ' PM']] Pair of AM/PM suffixes (with space, as well). Will be used if `timeFormat = 'AM-PM'`
  */
 const formatTime = (input: number | Date, options?: Options): string => {
-    const { timeFormat = '24h', fullSize = false, divider = ':', removeOverflow = false } = options ?? {};
+    const { timeFormat = '24h', fullSize = false, divider = ':', removeOverflow = false, suffixes = [' AM', ' PM'] } =
+        options ?? {};
 
     let hours: number;
     let minutes: number;
+    let suffixSelect = 0;
 
     if (input instanceof Date) {
         hours = input.getHours();
@@ -50,10 +54,22 @@ const formatTime = (input: number | Date, options?: Options): string => {
         hours = hours - HALF_OF_DAY;
     }
 
+    if (timeFormat === 'AM-PM') {
+        if (hours === 0) {
+            hours = HALF_OF_DAY;
+        } else if (hours > HALF_OF_DAY) {
+            hours = hours - HALF_OF_DAY;
+            suffixSelect = 1;
+        } else if (hours === HALF_OF_DAY) {
+            suffixSelect = 1;
+        }
+    }
+
     const prefix = fullSize && hours < 10 ? '0' : '';
     const restStr = minutes < 10 ? `0${minutes}` : `${minutes}`;
+    const suffix = timeFormat === 'AM-PM' ? suffixes[suffixSelect] : '';
 
-    return `${prefix}${hours}${divider}${restStr}`;
+    return `${prefix}${hours}${divider}${restStr}${suffix}`;
 };
 
 export default formatTime;
