@@ -1,0 +1,41 @@
+{
+  "name": "time-format",
+  "version": "1.0.0",
+  "description": "Simple library for time formatting",
+  "main": "lib/index.js",
+  "repository": "https://github.com/opa-oz/time-format.git",
+  "author": "Vladimir Levin <vladimirlevinozinki@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "rimraf ./build && tsc",
+    "lint": "eslint . --ext .ts",
+    "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
+    "test": "jest --config=./jest.config.js",
+    "release": "standard-version"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-typescript": "^7.12.7",
+    "@types/jest": "^26.0.19",
+    "@types/node": "^14.14.14",
+    "@typescript-eslint/eslint-plugin": "^4.10.0",
+    "@typescript-eslint/parser": "^4.10.0",
+    "babel-jest": "^26.6.3",
+    "eslint": "^7.16.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-prettier": "^3.3.0",
+    "husky": "^4.3.6",
+    "jest": "^26.6.3",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "standard-version": "^9.0.0",
+    "typescript": "^4.1.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn prettier-format && yarn lint && yarn test"
+    }
+  }
+}
