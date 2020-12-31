@@ -15,6 +15,11 @@
 ![Node.js CI](https://github.com/opa-oz/format-hours/workflows/Node.js%20CI/badge.svg?branch=main)
 [![codecov](https://codecov.io/gh/opa-oz/format-hours/branch/main/graph/badge.svg)](https://codecov.io/gh/opa-oz/format-hours)
 
+
+## New
+🎉 [Reverse parsing!](#example)
+
+
 ## Installation
 You can install `format-hours` using standard tools:
 ```bash
@@ -25,7 +30,7 @@ $> yarn add format-hours
 
 ## Usage
 ```typescript
-import formatTime from 'formatHours';
+import formatTime from 'format-hours';
 
 formatTime(9); // 9:00
 formatTime(15); // 15:00
@@ -88,6 +93,44 @@ function formatTime(input: Date | number, options?: Options): string {
 | `fullSize` | `boolean` | `false` | Appends leading zero if hour less than 10 |
 | `removeOverflow` | `boolean` | `false` | Trims extra-hours if input value more than 24 |
 | `suffixes` | `[string, string]` | `[' AM', ' PM']` | Suffixes for `'AM-PM''` time format. `['<suffix if before noon>', '<siffux if after noon']` |
+
+## parseTime
+Kind of reverse parsing for hours:
+**Interface:**
+```typescript
+function parseTime(inputStr: string, timeFormat?: '24h' | '12h' | 'AM-PM'): string {
+    // ...
+}
+```
+
+### Options
+|**Option**| **Type** | **Default** | **Description** |
+|--|--|--|--|
+| `timeFormat` | `'24h'/'12h'/'AM-PM''` | `'24h'` | The way of parsing hours. Try to avoid using '12h', it may cause wrong parsing of 12:00. Use 'AM-PM' instead.|
+
+
+### Example
+```typescript
+import { parseTime } from 'format-hours';
+
+parseTime('13:00') // 13
+parseTime('23:30') // 23.5
+parseTime('12:15') // 12.25
+
+// Works with AM-PM time
+parseTime('12:00 a.m.', 'AM-PM') // 12
+parseTime('12:00 p.m.', 'AM-PM') // 0
+
+// in any notation
+parseTime('1:00 PM', 'AM-PM') // 13
+parseTime('01:30 PM', 'AM-PM') // 13.5
+
+// with any dividers
+parseTime('17-00') // 17
+parseTime('14/45') // 14.75
+parseTime('09|30') // 9.30
+
+```
 
 ----
 ## Contributing
