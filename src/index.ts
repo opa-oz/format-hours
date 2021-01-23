@@ -123,6 +123,10 @@ const parseTime = (inputStr: string, timeFormat: TimeFormat = '24h'): number | n
             break;
     }
 
+    if (hour >= MAX_HOUR_VALUE || minutes >= MINUTES_IN_HOUR) {
+        return null;
+    }
+
     return hour + Number.parseFloat((minutes / MINUTES_IN_HOUR).toFixed(2));
 };
 

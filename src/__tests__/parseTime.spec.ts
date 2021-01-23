@@ -120,4 +120,14 @@ describe('parseTime', () => {
             expect(parseTime(formatted24)).toEqual(12); // This is wrong
         });
     });
+
+    describe('# Overflow protection', () => {
+        const localTestTable = ['13:78', '50:20', '01:60', '11:90'];
+
+        localTestTable.forEach((input) => {
+            test(`should parse ${input} hours as null`, () => {
+                expect(parseTime(input)).toEqual(null);
+            });
+        });
+    });
 });
