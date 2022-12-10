@@ -23,8 +23,13 @@ export type Options = {
  * @param {string[]} [options.suffixes = [' AM', ' PM']] Pair of AM/PM suffixes (with space, as well). Will be used if `timeFormat = 'AM-PM'`
  */
 const formatTime = (input: number | Date, options?: Options): string => {
-    const { timeFormat = '24h', fullSize = false, divider = ':', removeOverflow = false, suffixes = [' AM', ' PM'] } =
-        options ?? {};
+    const {
+        timeFormat = '24h',
+        fullSize = false,
+        divider = ':',
+        removeOverflow = false,
+        suffixes = [' AM', ' PM']
+    } = options ?? {};
 
     let hours: number;
     let minutes: number;
