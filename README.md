@@ -11,13 +11,10 @@
 [![Version npm][version]](https://www.npmjs.com/package/format-hours)
 [![License: MIT][license]](https://opensource.org/licenses/MIT)
 [![Minsize][minsize]](https://www.npmjs.com/package/format-hours)
-![CodeQL](https://github.com/opa-oz/format-hours/workflows/CodeQL/badge.svg?branch=main)
 ![Node.js CI](https://github.com/opa-oz/format-hours/workflows/Node.js%20CI/badge.svg?branch=main)
 [![codecov](https://codecov.io/gh/opa-oz/format-hours/branch/main/graph/badge.svg)](https://codecov.io/gh/opa-oz/format-hours)
+[![Coverage](./badges/coverage.svg)](./badges/coverage.svg)
 
-
-## New
-🎉 [Reverse parsing!](#example)
 
 
 ## Installation
@@ -166,3 +163,8 @@ format-hours is copyright © 2020 [opa_oz](https://github.com/opa-oz). It is fre
 [license]: https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square
 [pr]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
 [minsize]: https://img.shields.io/bundlephobia/min/format-hours?style=flat-square
+
+
+----
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/S6S1UZ9P7)

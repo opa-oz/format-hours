@@ -1,4 +1,5 @@
 import formatTime from '../index';
+import { describe, test, expect } from '@jest/globals';
 
 describe('formatTime', () => {
     describe('# Simple 24 hours format', () => {

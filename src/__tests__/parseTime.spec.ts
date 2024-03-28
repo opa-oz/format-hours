@@ -1,4 +1,5 @@
 import formatTime, { parseTime } from '../index';
+import { describe, test, expect } from '@jest/globals';
 
 describe('parseTime', () => {
     const testTable = new Array(24).fill(false).map((_, k) => k);
