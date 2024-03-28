@@ -1,6 +1,6 @@
 {
   "name": "format-hours",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Simple library for hours formatting",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
